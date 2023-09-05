@@ -1,0 +1,71 @@
+﻿@page
+@model WebRazor.Pages.IndexModel
+@{
+	if (Model.Cart == null || Model.Cart.Count == 0)
+	{
+		ViewData["cartSize"] = 0;
+	}
+	else
+	{
+		ViewData["cartSize"] = Model.Cart.Count;
+	}
+	String id = HttpContext.Session.GetString("ID");
+}
+<div id="content-left">
+	<h3>CATEGORY</h3>
+	<ul>
+		@foreach (var item in Model.Categories)
+		{
+			<a asp-route-id="@item.CategoryId">
+			<li style="color:black">@item.CategoryName</li>
+			</a>
+		}
+		<li>@ViewData["size"]</li>
+	</ul>
+	@if (id != null)
+	{
+		<div style="margin-top: 140px;">
+			<a href="/Chat?toUserId="><img style="width:50px; height:50px; margin-top : 10px; margin-left:50px;" src="~/img/chat.png" /></a>
+		</div>
+	}
+</div>
+
+
+<div id="content-right">
+
+	@if (Model.Products.Count > 0)
+	{
+		<div class="path">Product</div>
+
+		<div class="content-main">
+			@foreach (var item in Model.Products)
+			{
+				<div class="product">
+					<a href="~/Product/Detail?id=@item.ProductId"><img src="~/img/xx.jpg" /></a>
+					<div style="text-align:center" class="name"><a href="~/Product/Detail?id=@item.ProductId">@item.ProductName</a></div>
+					<div style="text-align:center" class="price">@item.UnitPrice</div>
+					<a href="/Cart/Add/@item.ProductId">
+						<input type="button" value="ADD TO CART" style="background-color: #fff; color:black;border: 1px solid gray;">
+					</a>
+				</div>
+			}
+		</div>
+	}
+	else
+	{
+		<div class="path" style="background-color:aqua;color:black; font-weight:bold">Product</div>
+		<div class="content-main">
+			@foreach (var item in Model.BestSaleProducts)
+			{
+				<div class="product">
+					<a asp-page="./Product/Detail" asp-route-id="@item.ProductId"><img src="img/xx.jpg" /></a>
+					<div style="text-align:center; color:blue" class="name"><a asp-page="./Product/Detail" asp-route-id="@item.ProductId">@item.ProductName</a></div>
+					<div style="text-align:center" class="price">@item.UnitPrice</div>
+					<a href="/Cart/Add/@item.ProductId">
+						<input type="button" value="ADD TO CART" style="background-color: #fff; color:blue;">
+					</a>
+				</div>
+			}
+		</div>
+	}
+</div>

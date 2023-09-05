@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link href="~/css/style1.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="logo">
+                <a href="~/index">
+                    <img src="~/img/lg.jpg" />
+                </a>
+            </div>
+            <div id="banner">
+                <div class="search">
+                </div>
+                <div class="login">
+                    <ul>
+                        @if (Context.Session.GetString("CustSession") != null)
+                        {
+
+                            <div>
+                            <li><a href="~/"><button class="log">Home</button></a></li>
+                            <li><a href="~/Cart"><button class="log">Cart: @ViewData["cartSize"]</button> </a></li>
+                            <li><a href="~/Account/Profile"><button class="log">Profile</button></a></li>
+                            <li><a href="~/Account/Logout"><button class="log">SignOut</button></a></li>
+                    </div>
+                        }
+                        else
+                        {
+                    <li><a href="~/Account/Login"><button class="log">Login</button></a></li>
+                    <li><a href="~/Account/SignUp"><button class="reg">Sign up</button></a></li>
+                        }
+
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <div id="content">
+            @RenderBody()
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <p>&copy; 2023 Example Company. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    #footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    #footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+
+    button {
+        cursor: pointer;
+        border: 0;
+        border-radius: 4px;
+        font-weight: 600;
+        width: 100px;
+        padding: 10px 0;
+        box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+        transition: 0.4s;
+    }
+
+    .reg {
+        color: white;
+        background-color: rgba(104, 85, 224, 1);
+    }
+
+    .log {
+        color: rgb(104, 85, 224);
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(104, 85, 224, 1);
+    }
+
+    button:hover {
+        color: white;
+        box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+        background-color: rgba(104, 85, 224, 1);
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: rgba(160,82,45)
+    }
+
+    .search {
+        width: 60%;
+        margin-left: 400px;
+        padding-bottom: 10px;
+        position: relative;
+        display: flex;
+    }
+
+    .searchTerm {
+        width: 100%;
+        border: 3px solid rgba(160,82,45);
+        border-right: none;
+        padding: 5px;
+        height: 20px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+    }
+
+        .searchTerm:focus {
+            color: rgba(160,82,45);
+        }
+
+    .searchButton {
+        width: 100px;
+        height: 36px;
+        background: rgba(160,82,45);
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    #banner {
+        display: flex;
+    }
+
+    .login {
+        width: 100%;
+        float: right;
+    }
+
+    .textsearch {
+        margin-bottom: 20px:
+    }
+
+    .chat {
+        float: right;
+    }
+
+    
+</style>
